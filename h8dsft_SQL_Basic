@@ -1,0 +1,10 @@
+Tampilkan  semua atribut dosen dan semua atribut mata kuliahnya. Urutkan hasilnya berdasarkan nama  mata kuliahnya secara ascending(A-Z).
+
+SELECT * FROM teachers
+JOIN courses ON teachers.id=courses.teachers_id
+WHERE (courses.name, teachers.salary) in ( SELECT courses.name, MAX(teachers.salary)
+  FROM teachers
+  JOIN courses ON teachers.id=courses.teachers_id
+  GROUP BY courses.name
+)
+ORDER BY courses.name ASC
